@@ -27,6 +27,7 @@
 		<url/>
 	</scm>
 	<properties>
+		<maven.checkstyle.plugin.configLocation>google_checks.xml</maven.checkstyle.plugin.configLocation>
 		<java.version>21</java.version>
 	</properties>
 	<dependencies>
@@ -65,6 +66,39 @@
 
 	<build>
 		<plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.3.1</version>
+
+                <dependencies>
+                    <!-- Актуальная версия Checkstyle -->
+                    <dependency>
+                        <groupId>com.puppycrawl.tools</groupId>
+                        <artifactId>checkstyle</artifactId>
+                        <version>10.17.0</version>
+                    </dependency>
+                </dependencies>
+
+                <configuration>
+                    <!-- Путь к конфигу -->
+                    <configLocation>${maven.checkstyle.plugin.configLocation}</configLocation>
+                    <!-- Показывать ошибки в консоли -->
+                    <consoleOutput>true</consoleOutput>
+                    <!-- Падать ли сборке -->
+                    <failsOnError>true</failsOnError>
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <id>validate</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>

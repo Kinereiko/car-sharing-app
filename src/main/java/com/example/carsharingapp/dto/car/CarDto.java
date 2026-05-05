@@ -1,10 +1,9 @@
 package com.example.carsharingapp.dto.car;
 
 import com.example.carsharingapp.model.Car;
+import java.math.BigDecimal;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.math.BigDecimal;
 
 @Getter
 @Setter

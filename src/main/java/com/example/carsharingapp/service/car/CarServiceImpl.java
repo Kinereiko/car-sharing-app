@@ -2,15 +2,13 @@ package com.example.carsharingapp.service.car;
 
 import com.example.carsharingapp.dto.car.CarDto;
 import com.example.carsharingapp.dto.car.CarRequestDto;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class CarServiceImpl implements CarService {
-
     @Override
     public CarDto save(CarRequestDto requestDto) {
         return null;
@@ -22,12 +20,12 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public CarDto findByID(CarRequestDto requestDto) {
+    public CarDto findById(CarRequestDto requestDto) {
         return null;
     }
 
     @Override
-    public CarDto updateByID(Long id, CarRequestDto requestDto) {
+    public CarDto updateById(Long id, CarRequestDto requestDto) {
         return null;
     }
 

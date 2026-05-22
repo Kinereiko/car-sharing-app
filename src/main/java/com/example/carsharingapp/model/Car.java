@@ -11,6 +11,8 @@ import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 @Entity
 @Getter
@@ -24,8 +26,9 @@ public class Car {
     private String model;
     @Column(nullable = false)
     private String brand;
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "car_type")
     @Enumerated(EnumType.STRING)
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     private TypeName type;
     @Column(nullable = false)
     private int inventory;

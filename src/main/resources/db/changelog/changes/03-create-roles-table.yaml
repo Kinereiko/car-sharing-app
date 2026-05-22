@@ -1,0 +1,51 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-roles-enum
+      author: Ki_ne_rei_ko
+      changes:
+        - sql:
+            sql: CREATE TYPE role_type AS ENUM ('MANAGER', 'CUSTOMER');
+
+  - changeSet:
+      id: create-roles-table
+      author: Ki_ne_rei_ko
+      changes:
+        - createTable:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: role
+                  type: role_type
+                  constraints:
+                    unique: true
+                    nullable: false
+
+  - changeSet:
+      id: add_values
+      author: Ki_ne_rei_ko
+      changes:
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: role
+                  value: MANAGER
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: role
+                  value: CUSTOMER

@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
@@ -26,17 +27,20 @@ public class CarController {
         return carService.findById(id);
     }
 
+    @PreAuthorize("hasRole('ROLE_MANAGER')")
     @PostMapping
     public CarDto save(@RequestBody @Valid CarRequestDto requestDto) {
         return carService.save(requestDto);
     }
 
+    @PreAuthorize("hasRole('ROLE_MANAGER')")
     @PutMapping("/{id}")
     public CarDto update(@PathVariable Long id,
                          @RequestBody @Valid CarRequestDto requestDto) {
         return carService.updateById(id, requestDto);
     }
 
+    @PreAuthorize("hasRole('ROLE_MANAGER')")
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         carService.deleteById(id);

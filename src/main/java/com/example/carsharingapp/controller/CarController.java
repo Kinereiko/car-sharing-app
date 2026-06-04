@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(value = "/cars")
+@RequestMapping("/cars")
 public class CarController {
     private final CarService carService;
 

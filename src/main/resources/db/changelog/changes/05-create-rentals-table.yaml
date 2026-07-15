@@ -40,3 +40,7 @@ databaseChangeLog:
                     nullable: false
                     foreignKeyName: fk_rentals_user
                     references: users(id)
+              - column:
+                  name: is_active
+                  type: boolean
+                  defaultValueBoolean: false

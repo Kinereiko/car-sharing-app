@@ -34,7 +34,6 @@ databaseChangeLog:
                   name: type
                   type: car_type
                   constraints:
-                    unique: true
                     nullable: false
               - column:
                   name: inventory

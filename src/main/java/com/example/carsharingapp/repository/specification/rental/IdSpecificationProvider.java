@@ -2,9 +2,9 @@ package com.example.carsharingapp.repository.specification.rental;
 
 import com.example.carsharingapp.model.Rental;
 import com.example.carsharingapp.repository.specification.SpecificationProvider;
+import java.util.Arrays;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
-import java.util.Arrays;
 
 @Component
 public class IdSpecificationProvider implements SpecificationProvider<Rental> {

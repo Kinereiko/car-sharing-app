@@ -20,11 +20,14 @@ public class RentalSpecificationBuilder implements SpecificationBuilder<Rental> 
         Specification<Rental> spec = (root, query, cb) -> cb.conjunction();
 
         if (searchParameters.ids() != null && searchParameters.ids().length > 0) {
-            spec = spec.and(rentalSpecificationProviderManager.getSpecificationProvider(ID_KEY)
+            spec = spec.and(rentalSpecificationProviderManager
+                    .getSpecificationProvider(ID_KEY)
                     .getSpecification(searchParameters.ids()));
         }
-        if (searchParameters.isActive() != null && searchParameters.isActive().length > 0) {
-            spec = spec.and(rentalSpecificationProviderManager.getSpecificationProvider(IS_ACTIVE_KEY)
+        if (searchParameters.isActive() != null
+                && searchParameters.isActive().length > 0) {
+            spec = spec.and(rentalSpecificationProviderManager
+                    .getSpecificationProvider(IS_ACTIVE_KEY)
                     .getSpecification(searchParameters.isActive()));
         }
         return spec;

@@ -3,11 +3,11 @@ package com.example.carsharingapp.controller;
 import com.example.carsharingapp.dto.rental.*;
 import com.example.carsharingapp.service.rental.RentalService;
 import jakarta.validation.Valid;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -16,7 +16,8 @@ public class RentalController {
     private final RentalService rentalService;
 
     @PostMapping
-    public RentalDto save(@RequestBody @Valid RentalRequestDto requestDto, Authentication authentication) {
+    public RentalDto save(@RequestBody @Valid RentalRequestDto requestDto,
+                          Authentication authentication) {
         return rentalService.save(requestDto, authentication);
     }
 

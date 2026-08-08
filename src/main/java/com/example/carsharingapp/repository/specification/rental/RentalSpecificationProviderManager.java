@@ -3,10 +3,9 @@ package com.example.carsharingapp.repository.specification.rental;
 import com.example.carsharingapp.model.Rental;
 import com.example.carsharingapp.repository.specification.SpecificationProvider;
 import com.example.carsharingapp.repository.specification.SpecificationProviderManager;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @Component

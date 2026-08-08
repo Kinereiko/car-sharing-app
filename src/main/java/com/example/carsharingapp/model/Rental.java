@@ -1,11 +1,9 @@
 package com.example.carsharingapp.model;
 
 import jakarta.persistence.*;
+import java.time.LocalDate;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.SQLRestriction;
-import java.time.LocalDate;
 
 @Entity
 @Getter

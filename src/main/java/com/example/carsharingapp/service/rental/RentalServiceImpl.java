@@ -9,13 +9,12 @@ import com.example.carsharingapp.repository.CarRepository;
 import com.example.carsharingapp.repository.RentalRepository;
 import com.example.carsharingapp.repository.specification.rental.RentalSpecificationBuilder;
 import jakarta.persistence.EntityNotFoundException;
+import java.time.LocalDate;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -31,7 +30,8 @@ public class RentalServiceImpl implements RentalService {
                 .orElseThrow(() -> new EntityNotFoundException("Can't find car with id: "
                 + requestDto.getCarId()));
         if (car.getInventory() == 0) {
-            throw new RuntimeException("There's not available car of this model: " + car.getModel());
+            throw new RuntimeException("There's not available car of this model: "
+                    + car.getModel());
         }
         car.setInventory(car.getInventory() - 1);
         carRepository.save(car);

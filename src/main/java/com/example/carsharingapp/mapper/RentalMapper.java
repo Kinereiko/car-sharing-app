@@ -9,7 +9,7 @@ import org.mapstruct.*;
 
 @Mapper(config = MapperConfig.class, uses = CarMapper.class)
 public interface RentalMapper {
-    @Mapping(target= "carDto", source = "car")
+    @Mapping(target = "carDto", source = "car")
     @Mapping(target = "userId", source = "user.id")
     RentalDto toDto(Rental rental);
 

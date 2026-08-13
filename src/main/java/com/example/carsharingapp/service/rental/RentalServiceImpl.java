@@ -8,6 +8,7 @@ import com.example.carsharingapp.model.User;
 import com.example.carsharingapp.repository.CarRepository;
 import com.example.carsharingapp.repository.RentalRepository;
 import com.example.carsharingapp.repository.specification.rental.RentalSpecificationBuilder;
+import com.example.carsharingapp.service.notification.NotificationService;
 import jakarta.persistence.EntityNotFoundException;
 import java.time.LocalDate;
 import java.util.List;
@@ -23,6 +24,7 @@ public class RentalServiceImpl implements RentalService {
     private final CarRepository carRepository;
     private final RentalMapper rentalMapper;
     private final RentalSpecificationBuilder rentalSpecificationBuilder;
+    private final NotificationService notificationService;
 
     @Override
     public RentalDto save(RentalRequestDto requestDto, Authentication authentication) {
@@ -36,8 +38,10 @@ public class RentalServiceImpl implements RentalService {
         car.setInventory(car.getInventory() - 1);
         carRepository.save(car);
         User user = getUserFromAuthentication(authentication);
-        Rental rental = createRental(requestDto, car, user);
-        return rentalMapper.toDto(rentalRepository.save(rental));
+        Rental rental = rentalRepository.save(createRental(requestDto, car, user));
+        RentalDto responseDto = rentalMapper.toDto(rental);
+        notificationService.sendMessage(responseDto);
+        return responseDto;
     }
 
     @Override

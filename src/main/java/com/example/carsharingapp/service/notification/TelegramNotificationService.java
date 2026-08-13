@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class TelegramNotificationService implements NotificationService {
-    private static final String BOT_TOKEN = "8856273104:AAGpIQQnEBRPIkoJheWCUdeI9_ye98e7JB0";
-    private static final String CHAT_ID = "736084114";
+    private static final String BOT_TOKEN = "-";
+    private static final String CHAT_ID = "-";
     private final TelegramBot bot = new TelegramBot(BOT_TOKEN);
 
     @Override

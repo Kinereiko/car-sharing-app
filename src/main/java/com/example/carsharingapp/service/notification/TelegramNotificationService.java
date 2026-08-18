@@ -5,17 +5,24 @@ import com.example.carsharingapp.exception.NotificationException;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.request.SendMessage;
 import com.pengrad.telegrambot.response.SendResponse;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TelegramNotificationService implements NotificationService {
-    private static final String BOT_TOKEN = "8856273104:AAGpIQQnEBRPIkoJheWCUdeI9_ye98e7JB0";
-    private static final String CHAT_ID = "736084114";
-    private final TelegramBot bot = new TelegramBot(BOT_TOKEN);
+    private final TelegramBot bot;
+    private final String chatId;
+
+    public TelegramNotificationService(
+            @Value("${telegram.bot.token}") String botToken,
+            @Value("${telegram.chat.id}") String chatId) {
+        this.bot = new TelegramBot(botToken);
+        this.chatId = chatId;
+    }
 
     @Override
     public void sendMessage(RentalDto dto) {
-        SendMessage request = new SendMessage(CHAT_ID, dto.toString());
+        SendMessage request = new SendMessage(chatId, dto.toString());
         SendResponse response = bot.execute(request);
 
         if (!response.isOk()) {

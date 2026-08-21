@@ -21,8 +21,18 @@ public class TelegramNotificationService implements NotificationService {
     }
 
     @Override
-    public void sendMessage(RentalDto dto) {
+    public void sendNewRental(RentalDto dto) {
         SendMessage request = new SendMessage(chatId, dto.toString());
+        SendResponse response = bot.execute(request);
+
+        if (!response.isOk()) {
+            throw new NotificationException("Message delivery failed: " + response.description());
+        }
+    }
+
+    @Override
+    public void sendMessage(String message) {
+        SendMessage request = new SendMessage(chatId, message);
         SendResponse response = bot.execute(request);
 
         if (!response.isOk()) {

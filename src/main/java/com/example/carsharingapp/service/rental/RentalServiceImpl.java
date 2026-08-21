@@ -40,7 +40,7 @@ public class RentalServiceImpl implements RentalService {
         User user = getUserFromAuthentication(authentication);
         Rental rental = rentalRepository.save(createRental(requestDto, car, user));
         RentalDto responseDto = rentalMapper.toDto(rental);
-        notificationService.sendMessage(responseDto);
+        notificationService.sendNewRental(responseDto);
         return responseDto;
     }
 

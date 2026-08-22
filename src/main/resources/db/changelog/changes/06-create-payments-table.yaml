@@ -1,0 +1,56 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-statuses-and-types-enum
+      author: Ki_ne_rei_ko
+      changes:
+        - sql:
+            sql: CREATE TYPE status_type AS ENUM ('PENDING', 'PAID');
+        - sql:
+            sql: CREATE TYPE payment_type AS ENUM ('PAYMENT', 'FINE');
+
+  - changeSet:
+      id: create-payments-table
+      author: Ki_ne_rei_ko
+      changes:
+        - createTable:
+            tableName: payments
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: rental_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_payment_rental
+                    references: rentals(id)
+              - column:
+                  name: status
+                  type: status_type
+                  constraints:
+                    nullable: false
+              - column:
+                  name: type
+                  type: payment_type
+                  constraints:
+                    nullable: false
+              - column:
+                  name: session_url
+                  type: varchar(512)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: session_id
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: total_price
+                  type: numeric(10, 2)
+                  constraints:
+                    nullable: false

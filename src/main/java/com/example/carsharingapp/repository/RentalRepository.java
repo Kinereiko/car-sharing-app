@@ -2,6 +2,7 @@ package com.example.carsharingapp.repository;
 
 import com.example.carsharingapp.model.Rental;
 import jakarta.annotation.Nullable;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.domain.Specification;
@@ -22,4 +23,9 @@ public interface RentalRepository extends JpaRepository<Rental,
 
     @EntityGraph(attributePaths = {"car"})
     List<Rental> findAll(@Nullable Specification<Rental> spec);
+
+    @EntityGraph(attributePaths = {"car"})
+    @Query("SELECT r FROM Rental r JOIN r.car c JOIN r.user u "
+            + "WHERE r.actualReturnDate IS NULL AND r.returnDate < :todayDate")
+    List<Rental> findAllOverdue(LocalDate todayDate);
 }

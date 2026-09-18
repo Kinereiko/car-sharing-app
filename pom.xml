@@ -133,6 +133,12 @@
             <artifactId>java-telegram-bot-api</artifactId>
             <version>7.11.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.stripe</groupId>
+            <artifactId>stripe-java</artifactId>
+            <version>33.2.0</version>
+        </dependency>
     </dependencies>
 
     <build>

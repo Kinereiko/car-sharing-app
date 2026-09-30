@@ -10,12 +10,15 @@ import com.example.carsharingapp.repository.RoleRepository;
 import com.example.carsharingapp.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.Optional;
+
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;

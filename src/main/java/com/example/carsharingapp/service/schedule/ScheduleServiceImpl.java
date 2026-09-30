@@ -6,12 +6,15 @@ import com.example.carsharingapp.repository.RentalRepository;
 import com.example.carsharingapp.service.notification.NotificationService;
 import java.time.LocalDate;
 import java.util.List;
+
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class ScheduleServiceImpl implements ScheduleService {
     private final RentalRepository rentalRepository;
     private final RentalMapper rentalMapper;

@@ -12,6 +12,8 @@ import com.example.carsharingapp.service.notification.NotificationService;
 import jakarta.persistence.EntityNotFoundException;
 import java.time.LocalDate;
 import java.util.List;
+
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.Authentication;
@@ -19,6 +21,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class RentalServiceImpl implements RentalService {
     private final RentalRepository rentalRepository;
     private final CarRepository carRepository;

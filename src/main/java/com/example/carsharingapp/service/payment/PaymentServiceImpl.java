@@ -15,6 +15,8 @@ import jakarta.persistence.EntityNotFoundException;
 import java.math.BigDecimal;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
@@ -23,6 +25,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class PaymentServiceImpl implements PaymentService {
     private final PaymentRepository paymentRepository;
     private final PaymentMapper paymentMapper;

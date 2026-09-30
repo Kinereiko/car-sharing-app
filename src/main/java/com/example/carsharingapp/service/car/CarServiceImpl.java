@@ -8,12 +8,15 @@ import com.example.carsharingapp.model.Car;
 import com.example.carsharingapp.repository.CarRepository;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
+
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class CarServiceImpl implements CarService {
     private final CarRepository carRepository;
     private final CarMapper carMapper;

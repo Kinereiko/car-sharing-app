@@ -9,9 +9,8 @@ import com.example.carsharingapp.model.User;
 import com.example.carsharingapp.repository.RoleRepository;
 import com.example.carsharingapp.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
-import java.util.Optional;
-
 import jakarta.transaction.Transactional;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

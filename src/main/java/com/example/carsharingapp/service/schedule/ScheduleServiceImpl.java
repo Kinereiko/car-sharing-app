@@ -4,10 +4,9 @@ import com.example.carsharingapp.mapper.RentalMapper;
 import com.example.carsharingapp.model.Rental;
 import com.example.carsharingapp.repository.RentalRepository;
 import com.example.carsharingapp.service.notification.NotificationService;
+import jakarta.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
-
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;

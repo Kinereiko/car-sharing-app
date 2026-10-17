@@ -10,10 +10,9 @@ import com.example.carsharingapp.repository.RentalRepository;
 import com.example.carsharingapp.repository.specification.rental.RentalSpecificationBuilder;
 import com.example.carsharingapp.service.notification.NotificationService;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
-
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.Authentication;

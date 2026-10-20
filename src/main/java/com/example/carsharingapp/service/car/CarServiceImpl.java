@@ -7,9 +7,8 @@ import com.example.carsharingapp.mapper.CarMapper;
 import com.example.carsharingapp.model.Car;
 import com.example.carsharingapp.repository.CarRepository;
 import jakarta.persistence.EntityNotFoundException;
-import java.util.List;
-
 import jakarta.transaction.Transactional;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

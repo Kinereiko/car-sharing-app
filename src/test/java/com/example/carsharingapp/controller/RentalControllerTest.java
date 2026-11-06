@@ -82,7 +82,7 @@ class RentalControllerTest {
     }
 
     @Test
-    @WithMockUser(roles = "USER")
+    @WithMockUser(roles = "CUSTOMER")
     @DisplayName("POST /rentals creates a rental for an authenticated user")
     void save_ValidRequest_ReturnsRental() throws Exception {
         when(rentalService.save(any(RentalRequestDto.class), any(Authentication.class)))
@@ -98,7 +98,7 @@ class RentalControllerTest {
     }
 
     @Test
-    @WithMockUser(roles = "USER")
+    @WithMockUser(roles = "CUSTOMER")
     @DisplayName("POST /rentals with rentedDays outside 1..10 returns 400")
     void save_RentedDaysOutOfRange_ReturnsBadRequest() throws Exception {
         for (int days : new int[] {0, 11}) {
@@ -111,7 +111,7 @@ class RentalControllerTest {
     }
 
     @Test
-    @WithMockUser(roles = "USER")
+    @WithMockUser(roles = "CUSTOMER")
     @DisplayName("POST /rentals without carId returns 400")
     void save_MissingCarId_ReturnsBadRequest() throws Exception {
         mockMvc.perform(post("/rentals")
@@ -155,8 +155,8 @@ class RentalControllerTest {
     }
 
     @Test
-    @WithMockUser(roles = "USER")
-    @DisplayName("GET /rentals as USER is forbidden")
+    @WithMockUser(roles = "CUSTOMER")
+    @DisplayName("GET /rentals as CUSTOMER is forbidden")
     void search_User_ReturnsForbidden() throws Exception {
         mockMvc.perform(get("/rentals"))
                 .andExpect(status().isForbidden());
@@ -165,7 +165,7 @@ class RentalControllerTest {
     }
 
     @Test
-    @WithMockUser(roles = "USER")
+    @WithMockUser(roles = "CUSTOMER")
     @DisplayName("GET /rentals/list returns the rentals of the current user")
     void findAll_User_ReturnsOwnRentals() throws Exception {
         CarInfoForUserDto car = new CarInfoForUserDto();
@@ -218,8 +218,8 @@ class RentalControllerTest {
     }
 
     @Test
-    @WithMockUser(roles = "USER")
-    @DisplayName("GET /rentals/{id} as USER is forbidden")
+    @WithMockUser(roles = "CUSTOMER")
+    @DisplayName("GET /rentals/{id} as CUSTOMER is forbidden")
     void findById_User_ReturnsForbidden() throws Exception {
         mockMvc.perform(get("/rentals/1"))
                 .andExpect(status().isForbidden());
@@ -258,8 +258,8 @@ class RentalControllerTest {
     }
 
     @Test
-    @WithMockUser(roles = "USER")
-    @DisplayName("PUT /rentals/return as USER is forbidden")
+    @WithMockUser(roles = "CUSTOMER")
+    @DisplayName("PUT /rentals/return as CUSTOMER is forbidden")
     void setReturn_User_ReturnsForbidden() throws Exception {
         RentalReturnDto dto = new RentalReturnDto();
         dto.setId(1L);

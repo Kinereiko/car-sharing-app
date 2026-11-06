@@ -58,7 +58,7 @@ class PaymentControllerTest {
     }
 
     @Test
-    @WithMockUser(roles = "USER")
+    @WithMockUser(roles = "CUSTOMER")
     @DisplayName("POST /payments creates a payment and returns the Stripe session")
     void create_ValidRequest_ReturnsPayment() throws Exception {
         PaymentRequestDto request = new PaymentRequestDto();
@@ -79,7 +79,7 @@ class PaymentControllerTest {
     }
 
     @Test
-    @WithMockUser(roles = "USER")
+    @WithMockUser(roles = "CUSTOMER")
     @DisplayName("POST /payments without rentalId and type returns 400")
     void create_InvalidRequest_ReturnsBadRequest() throws Exception {
         mockMvc.perform(post("/payments")
@@ -118,8 +118,8 @@ class PaymentControllerTest {
     }
 
     @Test
-    @WithMockUser(roles = "USER")
-    @DisplayName("GET /payments/{id} as USER is forbidden")
+    @WithMockUser(roles = "CUSTOMER")
+    @DisplayName("GET /payments/{id} as CUSTOMER is forbidden")
     void findAllByUserId_User_ReturnsForbidden() throws Exception {
         mockMvc.perform(get("/payments/5"))
                 .andExpect(status().isForbidden());
@@ -128,7 +128,7 @@ class PaymentControllerTest {
     }
 
     @Test
-    @WithMockUser(roles = "USER")
+    @WithMockUser(roles = "CUSTOMER")
     @DisplayName("GET /payments/success marks the payment as paid")
     void handleSuccess_ValidSession_ReturnsPayment() throws Exception {
         when(paymentService.handleSuccess("sess_123"))
@@ -141,7 +141,7 @@ class PaymentControllerTest {
     }
 
     @Test
-    @WithMockUser(roles = "USER")
+    @WithMockUser(roles = "CUSTOMER")
     @DisplayName("GET /payments/success without sessionId returns 400")
     void handleSuccess_MissingSessionId_ReturnsBadRequest() throws Exception {
         mockMvc.perform(get("/payments/success"))
@@ -151,7 +151,7 @@ class PaymentControllerTest {
     }
 
     @Test
-    @WithMockUser(roles = "USER")
+    @WithMockUser(roles = "CUSTOMER")
     @DisplayName("GET /payments/cancel returns the cancel message")
     void handleCancel_ReturnsMessage() throws Exception {
         when(paymentService.handleCancel()).thenReturn("Payment was cancelled");

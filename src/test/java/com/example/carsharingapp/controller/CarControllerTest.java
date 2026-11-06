@@ -97,7 +97,7 @@ class CarControllerTest {
     }
 
     @Test
-    @WithMockUser(roles = "USER")
+    @WithMockUser(roles = "CUSTOMER")
     @DisplayName("GET /cars/{id} returns the car for an authenticated user")
     void findById_User_ReturnsCar() throws Exception {
         when(carService.findById(1L)).thenReturn(carDto(1L));
@@ -110,7 +110,7 @@ class CarControllerTest {
     }
 
     @Test
-    @WithMockUser(roles = "USER")
+    @WithMockUser(roles = "CUSTOMER")
     @DisplayName("GET /cars/{id} returns 404 when the car does not exist")
     void findById_NotExisting_ReturnsNotFound() throws Exception {
         when(carService.findById(99L)).thenThrow(new EntityNotFoundException("Car not found"));
@@ -135,8 +135,8 @@ class CarControllerTest {
     }
 
     @Test
-    @WithMockUser(roles = "USER")
-    @DisplayName("POST /cars as USER is forbidden")
+    @WithMockUser(roles = "CUSTOMER")
+    @DisplayName("POST /cars as CUSTOMER is forbidden")
     void save_User_ReturnsForbidden() throws Exception {
         mockMvc.perform(post("/cars")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -187,8 +187,8 @@ class CarControllerTest {
     }
 
     @Test
-    @WithMockUser(roles = "USER")
-    @DisplayName("PUT /cars/{id} as USER is forbidden")
+    @WithMockUser(roles = "CUSTOMER")
+    @DisplayName("PUT /cars/{id} as CUSTOMER is forbidden")
     void update_User_ReturnsForbidden() throws Exception {
         mockMvc.perform(put("/cars/1")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -222,8 +222,8 @@ class CarControllerTest {
     }
 
     @Test
-    @WithMockUser(roles = "USER")
-    @DisplayName("DELETE /cars/{id} as USER is forbidden")
+    @WithMockUser(roles = "CUSTOMER")
+    @DisplayName("DELETE /cars/{id} as CUSTOMER is forbidden")
     void delete_User_ReturnsForbidden() throws Exception {
         mockMvc.perform(delete("/cars/1"))
                 .andExpect(status().isForbidden());

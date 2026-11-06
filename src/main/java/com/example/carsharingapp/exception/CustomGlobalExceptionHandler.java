@@ -50,7 +50,7 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
 
     @ExceptionHandler(RegistrationException.class)
     public ResponseEntity<Object> handleRegistrationException(
-            EntityNotFoundException ex,
+            RegistrationException ex,
             WebRequest request
     ) {
         Map<String, Object> body = new LinkedHashMap<>();

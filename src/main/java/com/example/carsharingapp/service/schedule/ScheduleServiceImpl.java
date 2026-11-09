@@ -20,7 +20,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     private final NotificationService notificationService;
 
     private static final String MESSAGE = "No rentals overdue today!";
-    private static final String DAILY_CHECKING_TIME = "0 49 22 * * *";
+    private static final String DAILY_CHECKING_TIME = "0 0 10 * * *";
 
     @Scheduled(cron = DAILY_CHECKING_TIME)
     @Override

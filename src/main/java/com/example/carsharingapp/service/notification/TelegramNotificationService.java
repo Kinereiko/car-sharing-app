@@ -59,8 +59,7 @@ public class TelegramNotificationService implements NotificationService {
         for (RentalDto dto : dtos) {
             message.append(dto.toString()).append(SEPARATOR);
         }
-        message.replace(message.length() - 1 - SEPARATOR.length(),
-                message.length() - 1, "");
+        message.setLength(message.length() -  SEPARATOR.length());
         return message.toString();
     }
 }
